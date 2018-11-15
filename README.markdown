@@ -52,7 +52,7 @@ boolean isEmpty = fragment.isEmpty();
 Alternatively, you can rely on the `EmailReplyParser` to either parse an email or get its visible content in a single line of code:
 
 ```java
-Email email = EmailReplayParser.read(emailContentString);
+Email email = EmailReplyParser.read(emailContentString);
 
 String reply = EmailReplyParser.parseReply(emailContentString);
 ```
