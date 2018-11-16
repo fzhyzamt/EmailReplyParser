@@ -6,7 +6,8 @@
 	<packaging>jar</packaging>
 	<version>1.1</version>
 	<name>EmailReplyParser</name>
-	<url>https://github.com/edlio/EmailReplyParser</url>
+	<!-- source: <url>https://github.com/edlio/EmailReplyParser</url>-->
+	<url>https://github.com/fzhyzamt/EmailReplyParser</url>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
