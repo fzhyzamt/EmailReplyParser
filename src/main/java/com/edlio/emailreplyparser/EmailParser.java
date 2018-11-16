@@ -28,9 +28,28 @@ public class EmailParser {
 	 */
 	public EmailParser() {
 		compiledQuoteHeaderPatterns = new ArrayList<Pattern>();
-		quoteHeadersRegex.add("^(On\\s(.{1,500})wrote:)");
-		quoteHeadersRegex.add("From:[^\\n]+\\n?([^\\n]+\\n?){0,2}To:[^\\n]+\\n?([^\\n]+\\n?){0,2}Subject:[^\\n]+");
-		quoteHeadersRegex.add("To:[^\\n]+\\n?([^\\n]+\\n?){0,2}From:[^\\n]+\\n?([^\\n]+\\n?){0,2}Subject:[^\\n]+");
+//		quoteHeadersRegex.add("^(On\\s(.{1,500})wrote:)");
+//		quoteHeadersRegex.add("From:[^\\n]+\\n?([^\\n]+\\n?){0,2}To:[^\\n]+\\n?([^\\n]+\\n?){0,2}Subject:[^\\n]+");
+//		quoteHeadersRegex.add("To:[^\\n]+\\n?([^\\n]+\\n?){0,2}From:[^\\n]+\\n?([^\\n]+\\n?){0,2}Subject:[^\\n]+");
+        quoteHeadersRegex.add("^\\s*(On(?:(?!.*On\\b|\\bwrote:)[\\s\\S])+wrote:)$"); // On DATE, NAME <EMAIL> wrote:
+        quoteHeadersRegex.add("^\\s*(Le(?:(?!.*Le\\b|\\bécrit:)[\\s\\S])+écrit :)$"); // On DATE, NAME <EMAIL> wrote:
+        quoteHeadersRegex.add("^\\s*(El(?:(?!.*El\\b|\\bescribió:)[\\s\\S])+escribió:)$"); // On DATE, NAME <EMAIL> wrote:
+        quoteHeadersRegex.add("^\\s*(Il(?:(?!.*Il\\b|\\bscritto:)[\\s\\S])+scritto:)$"); // On DATE, NAME <EMAIL> wrote:
+        quoteHeadersRegex.add("^\\s*(Op\\s[\\S\\s]+?schreef[\\S\\s]+:)$"); // Il DATE, schreef NAME <EMAIL>:
+        quoteHeadersRegex.add("^\\s*((W\\sdniu|Dnia)\\s[\\S\\s]+?(pisze|napisał(\\(a\\))?):)$"); // W dniu DATE, NAME <EMAIL> pisze|napisał:
+        quoteHeadersRegex.add("^\\s*(Den\\s.+\\sskrev\\s.+:)$"); // Den DATE skrev NAME <EMAIL>:
+        quoteHeadersRegex.add("^\\s*(Am\\s.+\\sum\\s.+\\sschrieb\\s.+:)$"); // Am DATE um TIME schrieb NAME:
+        quoteHeadersRegex.add("^(在[\\S\\s]+写道：)$"); // > 在 DATE, TIME, NAME 写道：
+        quoteHeadersRegex.add("^(20[0-9]{2}\\..+\\s작성:)$"); // DATE TIME NAME 작성:
+        quoteHeadersRegex.add("^(20[0-9]{2}\\/.+のメッセージ:)$"); // DATE TIME、NAME のメッセージ:
+        quoteHeadersRegex.add("^(.+\\s<.+>\\sschrieb:)$"); // NAME <EMAIL> schrieb:
+        quoteHeadersRegex.add("^\\s*(From\\s?:.+\\s?(\\[|<).+(\\]|>))"); // "From: NAME <EMAIL>" OR "From : NAME <EMAIL>" OR "From : NAME<EMAIL>"(With support whitespace before start and before <)
+        quoteHeadersRegex.add("^\\s*(De\\s?:.+\\s?(\\[|<).+(\\]|>))"); // "De: NAME <EMAIL>" OR "De : NAME <EMAIL>" OR "De : NAME<EMAIL>"  (With support whitespace before start and before <)
+        quoteHeadersRegex.add("^\\s*(Van\\s?:.+\\s?(\\[|<).+(\\]|>))"); // "Van: NAME <EMAIL>" OR "Van : NAME <EMAIL>" OR "Van : NAME<EMAIL>"  (With support whitespace before start and before <)
+        quoteHeadersRegex.add("^\\s*(Da\\s?:.+\\s?(\\[|<).+(\\]|>))"); // "Da: NAME <EMAIL>" OR "Da : NAME <EMAIL>" OR "Da : NAME<EMAIL>"  (With support whitespace before start and before <)
+        quoteHeadersRegex.add("^(20[0-9]{2}-(?:0?[1-9]|1[012])-(?:0?[0-9]|[1-2][0-9]|3[01]|[1-9])\\s[0-2]?[0-9]:\\d{2}\\s[\\S\\s]+?:)$"); // 20YY-MM-DD HH:II GMT+01:00 NAME <EMAIL>:
+        quoteHeadersRegex.add("^\\s*([a-z]{3,4}\\.[\\s\\S]+\\sskrev[\\s\\S]+:)$"); // DATE skrev NAME <EMAIL>:
+        quoteHeadersRegex.add("^(Στις Τετ,(?:[\\s\\S]+)έγραψε:)$");
 		maxParagraphLines = 6;
 		maxNumCharsEachLine = 200;
 	}
