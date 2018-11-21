@@ -50,8 +50,8 @@ public class EmailParser {
         quoteHeadersRegex.add("^(20[0-9]{2}-(?:0?[1-9]|1[012])-(?:0?[0-9]|[1-2][0-9]|3[01]|[1-9])\\s[0-2]?[0-9]:\\d{2}\\s[\\S\\s]+?:)$"); // 20YY-MM-DD HH:II GMT+01:00 NAME <EMAIL>:
         quoteHeadersRegex.add("^\\s*([a-z]{3,4}\\.[\\s\\S]+\\sskrev[\\s\\S]+:)$"); // DATE skrev NAME <EMAIL>:
         quoteHeadersRegex.add("^(Στις Τετ,(?:[\\s\\S]+)έγραψε:)$");
-		maxParagraphLines = 6;
-		maxNumCharsEachLine = 200;
+		maxParagraphLines = 10;
+		maxNumCharsEachLine = 1000;
 	}
 
 	/**
