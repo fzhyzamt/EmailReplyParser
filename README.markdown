@@ -1,6 +1,6 @@
 EmailReplyParser
 ================
-[![Build Status](https://travis-ci.org/edlio/EmailReplyParser.png?branch=master)](https://travis-ci.org/edlio/EmailReplyParser)
+[![Build Status](https://travis-ci.org/fzhyzamt/EmailReplyParser.svg?branch=master)](https://travis-ci.org/fzhyzamt/EmailReplyParser)
 
 **EmailReplyParser** is a small Java library for parsing plain text email content, based on GitHub's [email_reply_parser](http://github.com/github/email_reply_parser) library.
 
